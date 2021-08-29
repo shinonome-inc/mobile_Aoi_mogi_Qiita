@@ -6,11 +6,8 @@ void main() {
     MaterialApp(
       home: Top(),
       routes: {
-        '/Bottom':(context)=>BottomNavigation(),
+        '/Bottom':(context) => BottomNavigation(),
       },
     ),
   );
 }
-Color bottomGray=Color(0xFF828282);
-Color buttonGreen=Color(0xFF468300);
-Color bottomGreen=Color(0xFF74C13A);
