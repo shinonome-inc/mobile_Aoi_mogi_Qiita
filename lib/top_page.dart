@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:aoi_mogi_qiita/main.dart';
-class Top extends StatefulWidget {
-  Top();
+import 'package:aoi_mogi_qiita/constants.dart';
+class Top extends StatelessWidget {
+  const Top({Key? key}) : super(key: key);
 
-  @override
-  _TopState createState() => _TopState();
-}
-class _TopState extends State<Top> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +19,7 @@ class _TopState extends State<Top> {
                 color: Colors.black.withOpacity(0.2),
               )),
           Column(children: <Widget>[
-            Expanded(flex:22,child:Container()),
+            Expanded(flex: 220, child: Container()),
             Text(
               'Qiita feed App',
               style: TextStyle(
@@ -32,6 +28,7 @@ class _TopState extends State<Top> {
                 color: Colors.white,
               ),
             ),
+            Expanded(flex: 8, child: Container()),
             Text(
               'prey ground',
               style: TextStyle(
@@ -39,10 +36,10 @@ class _TopState extends State<Top> {
                 color: Colors.white,
               ),
             ),
-          Expanded(flex:33,child:Container()),
+          Expanded(flex: 321, child: Container()),
             SizedBox(
               height: 52,
-              width: 344,
+              width: MediaQuery.of(context).size.width *0.872,
               child: ElevatedButton(
                 onPressed: () {},
                 child: Text(
@@ -58,7 +55,7 @@ class _TopState extends State<Top> {
                 ),
               ),
             ),
-            Expanded(flex:3,child:Container()),
+            Expanded(flex: 34, child: Container()),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/Bottom');
@@ -71,7 +68,7 @@ class _TopState extends State<Top> {
                 ),
               ),
             ),
-            Expanded(flex:8,child:Container()),
+            Expanded(flex: 81, child: Container()),
           ]),
         ]),
       ),
