@@ -16,59 +16,72 @@ class Top extends StatelessWidget {
           ),
           Positioned.fill(
               child: Container(
-                color: Colors.black.withOpacity(0.2),
-              )),
+            color: Colors.black.withOpacity(0.2),
+          )),
           Column(children: <Widget>[
-            Expanded(flex: 220, child: Container()),
+            Expanded(flex: 220, child: SizedBox()),
             Text(
-              'Qiita feed App',
+              'Qiita Feed App',
               style: TextStyle(
                 fontSize: 36,
                 fontFamily: 'Pacifico',
                 color: Colors.white,
               ),
             ),
-            Expanded(flex: 8, child: Container()),
+            Container(
+              height: 8,
+            ),
             Text(
-              'prey ground',
+              '-PlayGround-',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.white,
               ),
             ),
-          Expanded(flex: 321, child: Container()),
-            SizedBox(
-              height: 52,
-              width: MediaQuery.of(context).size.width *0.872,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'ログイン',
-                  style: TextStyle(
-                    fontSize: 14,
+            Expanded(flex: 321, child: SizedBox()),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 24),
+                height: 116,
+                child: Column(children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'ログイン',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: buttonGreen,
+                        onPrimary: Colors.white,
+                        shape: const StadiumBorder(),
+                      ),
+                    ),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: buttonGreen,
-                  onPrimary: Colors.white,
-                  shape: const StadiumBorder(),
-                ),
-              ),
-            ),
-            Expanded(flex: 34, child: Container()),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/Bottom');
-                },
-              child: Text(
-                'ログインせずに利用する',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Expanded(flex: 81, child: Container()),
+                  Container(
+                    height: 16,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/Bottom');
+                      },
+                      child: Text(
+                        'ログインせずに利用する',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ])),
+            Expanded(flex: 64, child: SizedBox()),
           ]),
         ]),
       ),
