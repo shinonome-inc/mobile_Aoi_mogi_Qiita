@@ -19,7 +19,7 @@ class Top extends StatelessWidget {
             color: Colors.black.withOpacity(0.2),
           )),
           Column(children: <Widget>[
-            Expanded(flex: 220, child: SizedBox()),
+            Expanded(flex: 220, child: Container()),
             Text(
               'Qiita Feed App',
               style: TextStyle(
@@ -38,7 +38,7 @@ class Top extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            Expanded(flex: 321, child: SizedBox()),
+            Expanded(flex: 321, child: Container()),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 24),
                 height: 116,
@@ -81,7 +81,7 @@ class Top extends StatelessWidget {
                     ),
                   ),
                 ])),
-            Expanded(flex: 64, child: SizedBox()),
+            Expanded(flex: 64, child: Container()),
           ]),
         ]),
       ),
