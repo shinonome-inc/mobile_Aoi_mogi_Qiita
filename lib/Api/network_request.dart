@@ -4,12 +4,12 @@ import 'model/qiita_api.dart';
 import 'dart:async';
 
 
-class Qiita{
-  static Future<List<QiitaApi>> fetchQiitaApi() async {
+class Qiita {
+  static Future<List<Article>> fetchArticle() async {
   final response = await http.get(Uri.parse('https://qiita.com/api/v2/items'));
   if (response.statusCode == 200) {
     final List<dynamic> jsonArray = json.decode(response.body);
-    return jsonArray.map((json) => QiitaApi.fromJson(json)).toList();
+    return jsonArray.map((json) => Article.fromJson(json)).toList();
   } else {
     throw Exception('読み込めませんでした');
   }

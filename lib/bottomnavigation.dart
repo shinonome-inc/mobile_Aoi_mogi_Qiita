@@ -20,31 +20,31 @@ class _BottomNavigationState extends State<BottomNavigation> {
         body: Stack(
           children: <Widget>[
             Offstage(
-              offstage: index !=0,
+              offstage: index != 0,
               child: TickerMode(
-                enabled: index==0,
-                child: MaterialApp(home:FeedPage()),
+                enabled: index == 0,
+                child:FeedPage(),
               ),
             ),
             Offstage(
-              offstage: index !=1,
+              offstage: index != 1,
               child: TickerMode(
-                enabled: index==1,
-                child: MaterialApp(home:TagPage()),
+                enabled: index == 1,
+                child: TagPage(),
               ),
             ),
             Offstage(
-              offstage: index !=2,
+              offstage: index != 2,
               child: TickerMode(
-                enabled: index==2,
-                child: MaterialApp(home:MyPage()),
+                enabled: index == 2,
+                child: MyPage(),
               ),
             ),
             Offstage(
-              offstage: index !=3,
+              offstage: index != 3,
               child: TickerMode(
-                enabled: index==3,
-                child: MaterialApp(home:SettingsPage()),
+                enabled: index == 3,
+                child: SettingsPage(),
               ),
             ),
           ],
