@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aoi_mogi_qiita">
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="dev.fluttermogi.aoiqiita.qiitaapp">
    <application
-        android:label="aoi_mogi_qiita"
+        android:label="qiitaapp"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -40,21 +39,3 @@
             android:value="2" />
     </application>
 </manifest>
-    <!-- Required to fetch data from the internet. -->
-<queries>
-<!-- If your app opens https URLs -->
-<intent>
-    <action android:name="android.intent.action.VIEW" />
-    <data android:scheme="https" />
-</intent>
-<!-- If your app makes calls -->
-<intent>
-    <action android:name="android.intent.action.DIAL" />
-    <data android:scheme="tel" />
-</intent>
-<!-- If your app emails -->
-<intent>
-    <action android:name="android.intent.action.SEND" />
-    <data android:mimeType="*/*" />
-</intent>
-</queries>
