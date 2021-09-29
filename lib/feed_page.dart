@@ -1,4 +1,4 @@
-import 'package:aoi_mogi_qiita/Api/model/qiita_api.dart';
+import 'package:aoi_mogi_qiita/Api/model/article.dart';
 import 'package:aoi_mogi_qiita/Api/network_request.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -128,44 +128,7 @@ class _QiitaCardState extends State<QiitaCard> {
                     child: Column(children: [
                       InkWell(
                         onTap: () {
-                          showModalBottomSheet<void>(
-                            context: context,
-                            isScrollControlled: true,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(15)),
-                            ),
-                            builder: (BuildContext context) {
-                              return Container(
-                                height: 500,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                        'Article',
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontFamily: 'Pacifico'),
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft:
-                                                  const Radius.circular(20.0),
-                                              topRight:
-                                                  const Radius.circular(20.0))),
-                                      child: Container(
-                                          child: WebView(
-                                        initialUrl: article.url,
-                                      )),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
+                          showArticlePage(article.url);
                         },
                         child: ListTile(
                           title: Row(
@@ -173,7 +136,7 @@ class _QiitaCardState extends State<QiitaCard> {
                               CircleAvatar(
                                 backgroundImage: NetworkImage(
                                     article.user.profile_image_url),
-                                radius: 24.0,
+                                radius: 19.0,
                               ),
                               SizedBox(width: 20.0),
                               Flexible(
@@ -187,43 +150,25 @@ class _QiitaCardState extends State<QiitaCard> {
                                       maxLines: 2,
                                     ),
                                     SizedBox(height: 10.0),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '@',
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.grey,
+                                    Container(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            '@' +
+                                                article.user.id +
+                                                ' 投稿日: ' +
+                                                article.created_at,
+                                            style: TextStyle(
+                                              fontSize: 12.0,
+                                              color: Colors.grey,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
                                           ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          article.user.id,
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.grey,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          '投稿日:',
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.grey,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          article.created_at,
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.grey,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -238,5 +183,40 @@ class _QiitaCardState extends State<QiitaCard> {
                     ]),
                   );
                 })));
+  }
+
+  void showArticlePage(String url) {
+    showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+        ),
+        builder: (context) => DraggableScrollableSheet(
+              initialChildSize: 1.0,
+              builder: (context, scrollController) => Container(
+                child: Column(
+                  children: [
+                    Text(
+                      'Article',
+                      style: TextStyle(fontSize: 17, fontFamily: 'Pacifico'),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.only(
+                              topLeft: const Radius.circular(20.0),
+                              topRight: const Radius.circular(20.0))),
+                      child: Container(
+                          height: MediaQuery.of(context).size.height * 0.9,
+                          width: MediaQuery.of(context).size.height * 0.9,
+                          child: WebView(
+                            initialUrl: url,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ));
   }
 }
