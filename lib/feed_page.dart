@@ -68,9 +68,7 @@ class QiitaCard extends StatefulWidget {
 }
 
 class _QiitaCardState extends State<QiitaCard> {
-  Qiita qiita = Qiita();
-
-  Widget _model(Article article) {
+  Widget model(Article article) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
       child: Column(
@@ -94,15 +92,13 @@ class _QiitaCardState extends State<QiitaCard> {
                       fontFamily: 'Pacifico')),
             ),
           ),
-          Expanded(
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: WebView(
-                    initialUrl: article.url,
-                  )),
-            ),
+          Container(
+            color: Colors.white,
+            child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: WebView(
+                  initialUrl: article.url,
+                )),
           ),
         ],
       ),
@@ -111,78 +107,77 @@ class _QiitaCardState extends State<QiitaCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: RefreshIndicator(
-            onRefresh: () async {
-              print('Loading New Data');
-              Qiita.fetchArticle();
-            },
-            child: ListView.builder(
-                itemCount: widget.qiitacard.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final article = widget.qiitacard[index];
-                  DateTime dateTime = DateTime.parse(article.created_at);
-                  return Card(
-                    elevation: 0,
-                    margin: EdgeInsets.all(0),
-                    child: Column(children: [
-                      InkWell(
-                        onTap: () {
-                          showArticlePage(article.url);
-                        },
-                        child: ListTile(
-                          title: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    article.user.profile_image_url),
-                                radius: 19.0,
-                              ),
-                              SizedBox(width: 20.0),
-                              Flexible(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      article.title,
-                                      style: TextStyle(fontSize: 14.0),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                    ),
-                                    SizedBox(height: 10.0),
-                                    Container(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            '@' +
-                                                article.user.id +
-                                                ' 投稿日: ' +
-                                                article.created_at,
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                              color: Colors.grey,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+    return RefreshIndicator(
+        onRefresh: () async {
+          print('Loading New Data');
+          Qiita.fetchArticle();
+        },
+        child: ListView.builder(
+            itemCount: widget.qiitacard.length,
+            itemBuilder: (BuildContext context, int index) {
+              final article = widget.qiitacard[index];
+              return Card(
+                elevation: 0,
+                margin: EdgeInsets.all(0),
+                child: Column(children: [
+                  InkWell(
+                    onTap: () {
+                      showArticlePage(article.url);
+                    },
+                    child: ListTile(
+                      title: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(article.user.profile_image_url),
+                            radius: 19.0,
                           ),
-                        ),
+                          SizedBox(width: 20.0),
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  article.title,
+                                  style: TextStyle(fontSize: 14.0),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                                SizedBox(height: 10.0),
+                                Container(
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '@' +
+                                            article.user.id +
+                                            ' 投稿日: ' +
+                                            article.created_at,
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: Colors.grey,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      Divider(
-                        height: 16,
-                      ),
-                    ]),
-                  );
-                })));
+                    ),
+                  ),
+                  Divider(
+                    indent: 75.0,
+                    height: 16,
+                  ),
+                ]),
+              );
+            }));
   }
 
   void showArticlePage(String url) {
