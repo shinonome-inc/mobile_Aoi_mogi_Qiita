@@ -68,43 +68,6 @@ class QiitaCard extends StatefulWidget {
 }
 
 class _QiitaCardState extends State<QiitaCard> {
-  Widget model(Article article) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 60,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: const BorderRadius.only(
-                topRight: const Radius.circular(20),
-                topLeft: const Radius.circular(20),
-              ),
-            ),
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("Article",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      fontFamily: 'Pacifico')),
-            ),
-          ),
-          Container(
-            color: Colors.white,
-            child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: WebView(
-                  initialUrl: article.url,
-                )),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
