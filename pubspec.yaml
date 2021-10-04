@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   http: ^0.13.3
   webview_flutter: ^2.0.14
+  cupertino_list_tile: ^0.2.0
+  hexcolor: ^2.0.5
 
 
 
