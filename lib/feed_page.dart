@@ -85,10 +85,7 @@ class _QiitaCardState extends State<QiitaCard> {
                 child: Column(children: [
                   InkWell(
                     onTap: () {
-                      ShowArticle(
-                        article.url,
-                        context,
-                      );
+                      ShowArticle(article.url, context);
                     },
                     child: ListTile(
                       title: Row(
