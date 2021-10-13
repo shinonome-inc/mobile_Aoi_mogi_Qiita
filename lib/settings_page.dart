@@ -12,7 +12,6 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        bottomOpacity: 0.0,
         elevation: 0.0,
         title: Text(
           'Settings',
@@ -24,11 +23,18 @@ class SettingsPage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Center(
           child: Column(
         children: <Widget>[
-          Container(
+          SizedBox(
             height: 31.5,
           ),
           Container(
@@ -43,7 +49,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 8,
           ),
           InkWell(
@@ -99,7 +105,7 @@ class SettingsPage extends StatelessWidget {
             height: 0,
             indent: 16,
           ),
-          Container(
+          SizedBox(
             height: 36,
           ),
           Container(
@@ -114,7 +120,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 8,
           ),
           InkWell(
@@ -136,17 +142,6 @@ class SettingsPage extends StatelessWidget {
           ),
         ],
       )),
-    );
-  }
-}
-
-class MyDivider extends StatelessWidget {
-  const MyDivider({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      height: 0,
     );
   }
 }
