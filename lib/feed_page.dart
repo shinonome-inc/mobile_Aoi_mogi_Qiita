@@ -1,7 +1,7 @@
 import 'package:aoi_mogi_qiita/Api/model/article.dart';
 import 'package:aoi_mogi_qiita/Api/network_request.dart';
+import 'package:aoi_mogi_qiita/BottomSheet/article_page.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -19,7 +19,6 @@ class _FeedPageState extends State<FeedPage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(88),
           child: AppBar(
-            bottomOpacity: 0.0,
             elevation: 0.0,
             title: Text(
               'Feed',
@@ -31,6 +30,13 @@ class _FeedPageState extends State<FeedPage> {
             ),
             centerTitle: true,
             backgroundColor: Colors.white,
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(1),
+              child: Divider(
+                height: 1,
+                color: Colors.black,
+              ),
+            ),
           ),
         ),
         body: Center(
@@ -85,7 +91,7 @@ class _QiitaCardState extends State<QiitaCard> {
                 child: Column(children: [
                   InkWell(
                     onTap: () {
-                      showArticlePage(article.url);
+                      ShowArticle(article.url, context);
                     },
                     child: ListTile(
                       title: Row(
@@ -141,40 +147,5 @@ class _QiitaCardState extends State<QiitaCard> {
                 ]),
               );
             }));
-  }
-
-  void showArticlePage(String url) {
-    showModalBottomSheet<void>(
-        context: context,
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-        ),
-        builder: (context) => DraggableScrollableSheet(
-              initialChildSize: 1.0,
-              builder: (context, scrollController) => Container(
-                child: Column(
-                  children: [
-                    Text(
-                      'Article',
-                      style: TextStyle(fontSize: 17, fontFamily: 'Pacifico'),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.only(
-                              topLeft: const Radius.circular(20.0),
-                              topRight: const Radius.circular(20.0))),
-                      child: Container(
-                          height: MediaQuery.of(context).size.height * 0.9,
-                          width: MediaQuery.of(context).size.height * 0.9,
-                          child: WebView(
-                            initialUrl: url,
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-            ));
   }
 }
