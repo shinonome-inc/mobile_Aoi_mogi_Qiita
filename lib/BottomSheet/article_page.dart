@@ -1,37 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void ShowArticle(String url, context) {
   showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-      ),
-      builder: (context) => DraggableScrollableSheet(
-            initialChildSize: 1.0,
-            builder: (context, scrollController) => Container(
-              child: Column(
-                children: [
-                  Text(
-                    'Article',
-                    style: TextStyle(fontSize: 17, fontFamily: 'Pacifico'),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(20.0),
-                            topRight: const Radius.circular(20.0))),
-                    child: Container(
-                        height: MediaQuery.of(context).size.height * 0.9,
-                        width: MediaQuery.of(context).size.height * 0.9,
-                        child: WebView(
-                          initialUrl: url,
-                        )),
-                  ),
-                ],
-              ),
+    context: context,
+    isScrollControlled: true,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+    ),
+    builder: (context) => Container(
+      height: MediaQuery.of(context).size.height * 0.94,
+      child: Column(children: [
+        Container(
+          padding: EdgeInsets.only(top: 24, bottom: 11),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+            color: HexColor('#F5F5F5'),
+          ),
+          height: 59,
+          width: MediaQuery.of(context).size.width,
+          child: Text(
+            'article',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Pacifico',
+              fontSize: 17,
             ),
-          ));
+          ),
+        ),
+        Divider(
+          height: 1,
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: WebView(
+                    initialUrl: url,
+                  ))
+            ]),
+          ),
+        )
+      ]),
+    ),
+  );
 }
