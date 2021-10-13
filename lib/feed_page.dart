@@ -19,7 +19,6 @@ class _FeedPageState extends State<FeedPage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(88),
           child: AppBar(
-            bottomOpacity: 0.0,
             elevation: 0.0,
             title: Text(
               'Feed',
@@ -31,6 +30,13 @@ class _FeedPageState extends State<FeedPage> {
             ),
             centerTitle: true,
             backgroundColor: Colors.white,
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(1),
+              child: Divider(
+                height: 1,
+                color: Colors.black,
+              ),
+            ),
           ),
         ),
         body: Center(
