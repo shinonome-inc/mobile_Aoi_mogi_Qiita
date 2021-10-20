@@ -99,13 +99,14 @@ class _TagListCardState extends State<TagListCard> {
                         SizedBox(
                           height: 16,
                         ),
-                        Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                            child: Container(
-                              height: 38,
-                              width: 38,
-                              child: Image.network(taglist.icon_url),
-                            )),
+                        Container(
+                          height: 38,
+                          width: 38,
+                          child: Image.network(taglist.iconUrl),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 8),
                           height: 20,
@@ -120,15 +121,14 @@ class _TagListCardState extends State<TagListCard> {
                         SizedBox(
                           child: Column(children: [
                             Text(
-                              '記事件数: ' + taglist.items_count.toString(),
+                              '記事件数: ' + taglist.itemsCount.toString(),
                               style: TextStyle(
                                   fontSize: 12, color: HexColor('#828282')),
                             ),
                             SizedBox(
                               height: 8,
                             ),
-                            Text(
-                                'フォロワー数: ' + taglist.followers_count.toString(),
+                            Text('フォロワー数: ' + taglist.followersCount.toString(),
                                 style: TextStyle(
                                     fontSize: 12, color: HexColor('#828282'))),
                           ]),
