@@ -18,12 +18,12 @@ class Qiita {
     }
   }
 
-  static Future<List<TagList>> fetchTagList() async {
+  static Future<List<Tag>> fetchTag() async {
     final response = await http.get(Uri.parse(
         'https://qiita.com/api/v2/tags?page=1&per_page=20&sort=count'));
     if (response.statusCode == 200) {
       final List<dynamic> jsonArray = json.decode(response.body);
-      return jsonArray.map((json) => TagList.fromJson(json)).toList();
+      return jsonArray.map((json) => Tag.fromJson(json)).toList();
     } else {
       throw Exception('読み込めませんでした');
     }

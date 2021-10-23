@@ -35,10 +35,10 @@ class _TagPageState extends State<TagPage> {
           ),
         ),
         body: Center(
-          child: FutureBuilder<List<TagList>>(
-              future: Qiita.fetchTagList(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<TagList>> snapshot) {
+          child: FutureBuilder<List<Tag>>(
+              future: Qiita.fetchTag(),
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<Tag>> snapshot) {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return CircularProgressIndicator();
                 }
@@ -60,7 +60,7 @@ class _TagPageState extends State<TagPage> {
 }
 
 class TagListCard extends StatefulWidget {
-  final List<TagList> tagcard;
+  final List<Tag> tagcard;
 
   const TagListCard({Key? key, required this.tagcard}) : super(key: key);
 
@@ -76,7 +76,7 @@ class _TagListCardState extends State<TagListCard> {
     return RefreshIndicator(
         onRefresh: () async {
           print('Loading New Data');
-          Qiita.fetchTagList();
+          Qiita.fetchTag();
         },
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
