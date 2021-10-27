@@ -49,7 +49,7 @@ class _TagPageState extends State<TagPage> {
 
                 if (snapshot.hasData) {
                   return TagListCard(
-                    tagcard: snapshot.data!,
+                    taglist: snapshot.data!,
                   );
                 } else {
                   return Text("データが存在しません");
@@ -60,9 +60,9 @@ class _TagPageState extends State<TagPage> {
 }
 
 class TagListCard extends StatefulWidget {
-  final List<Tag> tagcard;
+  final List<Tag> taglist;
 
-  const TagListCard({Key? key, required this.tagcard}) : super(key: key);
+  const TagListCard({Key? key, required this.taglist}) : super(key: key);
 
   @override
   _TagListCardState createState() => _TagListCardState();
@@ -83,9 +83,9 @@ class _TagListCardState extends State<TagListCard> {
               childAspectRatio: 162 / 138,
               crossAxisCount: 2,
             ),
-            itemCount: widget.tagcard.length,
+            itemCount: widget.taglist.length,
             itemBuilder: (BuildContext context, int index) {
-              final taglist = widget.tagcard[index];
+              final taglist = widget.taglist[index];
               return Padding(
                 padding: EdgeInsets.all(8.0),
                 child: InkWell(
