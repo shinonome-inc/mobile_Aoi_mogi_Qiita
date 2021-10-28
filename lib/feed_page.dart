@@ -122,7 +122,7 @@ class _QiitaCardState extends State<QiitaCard> {
                                         '@' +
                                             article.user.id +
                                             ' 投稿日: ' +
-                                            article.created_at,
+                                            article.createdAt,
                                         style: TextStyle(
                                           fontSize: 12.0,
                                           color: Colors.grey,
