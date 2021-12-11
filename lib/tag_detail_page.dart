@@ -88,7 +88,7 @@ class _TagDetailState extends State<TagDetail> {
 
               if (snapshot.hasData) {
                 return QiitaCard(
-                    qiitacard: snapshot.data!, tagID: widget.tagId);
+                    qiitaCard: snapshot.data!, tagId: widget.tagId);
               } else {
                 return Text("データが存在しません");
               }
@@ -99,9 +99,9 @@ class _TagDetailState extends State<TagDetail> {
 }
 
 class QiitaCard extends StatefulWidget {
-  final String tagID;
-  final List<TagArticle> qiitacard;
-  const QiitaCard({Key? key, required this.qiitacard, required this.tagID})
+  final String tagId;
+  final List<TagArticle> qiitaCard;
+  const QiitaCard({Key? key, required this.qiitaCard, required this.tagId})
       : super(key: key);
 
   @override
@@ -128,13 +128,13 @@ class _QiitaCardState extends State<QiitaCard> {
     return RefreshIndicator(
       onRefresh: () async {
         print('Loading New Data');
-        Qiita.fetchTagArticle(widget.tagID);
+        Qiita.fetchTagArticle(widget.tagId);
       },
       child: ListView.builder(
           controller: _controller,
-          itemCount: widget.qiitacard.length,
+          itemCount: widget.qiitaCard.length,
           itemBuilder: (BuildContext context, int index) {
-            final article = widget.qiitacard[index];
+            final article = widget.qiitaCard[index];
             return Card(
               elevation: 0,
               margin: EdgeInsets.all(0),
@@ -199,14 +199,14 @@ class _QiitaCardState extends State<QiitaCard> {
     );
   }
 
-  fetchMore() async {
+  void fetchMore() async {
     if (!_isLoading) {
       _isLoading = true;
       _page++;
-      var items = await Qiita.fetchTagArticle(widget.tagID);
+      var items = await Qiita.fetchTagArticle(widget.tagId);
       print(items);
       setState(() {
-        widget.qiitacard.addAll(items);
+        widget.qiitaCard.addAll(items);
       });
       _isLoading = false;
     }
