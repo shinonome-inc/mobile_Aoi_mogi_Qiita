@@ -27,6 +27,7 @@ dependencies:
   webview_flutter: ^2.0.14
   cupertino_list_tile: ^0.2.0
   hexcolor: ^2.0.5
+  intl: ^0.17.0
 
 
 

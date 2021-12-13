@@ -2,6 +2,7 @@ import 'package:aoi_mogi_qiita/Api/model/tag_detail.dart';
 import 'package:aoi_mogi_qiita/Api/network_request.dart';
 import 'package:aoi_mogi_qiita/BottomSheet/article_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'constants.dart';
 
@@ -90,7 +91,7 @@ class _TagDetailState extends State<TagDetail> {
                 return QiitaCard(
                     qiitaCard: snapshot.data!, tagId: widget.tagId);
               } else {
-                return Text("データが存在しません");
+                return Text("少し時間をおいてください");
               }
             }),
       ),
@@ -134,6 +135,9 @@ class _QiitaCardState extends State<QiitaCard> {
           controller: _controller,
           itemCount: widget.qiitaCard.length,
           itemBuilder: (BuildContext context, int index) {
+            DateFormat format = DateFormat('yyyy/MM/dd');
+            String timeDate = format.format(
+                DateTime.parse(widget.qiitaCard[index].createdAt).toLocal());
             final article = widget.qiitaCard[index];
             return Card(
               elevation: 0,
@@ -171,7 +175,7 @@ class _QiitaCardState extends State<QiitaCard> {
                                       '@' +
                                           article.user.id +
                                           ' 投稿日: ' +
-                                          article.createdAt,
+                                          timeDate,
                                       style: TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.grey,
