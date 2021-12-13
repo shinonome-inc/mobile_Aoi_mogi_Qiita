@@ -2,6 +2,7 @@ import 'package:aoi_mogi_qiita/Api/model/article.dart';
 import 'package:aoi_mogi_qiita/Api/network_request.dart';
 import 'package:aoi_mogi_qiita/BottomSheet/article_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class _FeedPageState extends State<FeedPage> {
 
                 if (snapshot.hasData) {
                   return QiitaCard(
-                    qiitacard: snapshot.data!,
+                    qiitaCard: snapshot.data!,
                   );
                 } else {
                   return Text("データが存在しません");
@@ -65,9 +66,9 @@ class _FeedPageState extends State<FeedPage> {
 }
 
 class QiitaCard extends StatefulWidget {
-  final List<Article> qiitacard;
+  final List<Article> qiitaCard;
 
-  const QiitaCard({Key? key, required this.qiitacard}) : super(key: key);
+  const QiitaCard({Key? key, required this.qiitaCard}) : super(key: key);
 
   @override
   _QiitaCardState createState() => _QiitaCardState();
@@ -82,9 +83,12 @@ class _QiitaCardState extends State<QiitaCard> {
           Qiita.fetchArticle();
         },
         child: ListView.builder(
-            itemCount: widget.qiitacard.length,
+            itemCount: widget.qiitaCard.length,
             itemBuilder: (BuildContext context, int index) {
-              final article = widget.qiitacard[index];
+              final article = widget.qiitaCard[index];
+              DateFormat format = DateFormat('yyyy/MM/dd');
+              String timeDate = format.format(
+                  DateTime.parse(widget.qiitaCard[index].createdAt).toLocal());
               return Card(
                 elevation: 0,
                 margin: EdgeInsets.all(0),

@@ -3,6 +3,8 @@ import 'package:aoi_mogi_qiita/Api/network_request.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'tag_detail_page.dart';
+
 class TagPage extends StatefulWidget {
   const TagPage({Key? key}) : super(key: key);
 
@@ -89,7 +91,14 @@ class _TagListCardState extends State<TagListCard> {
               return Padding(
                 padding: EdgeInsets.all(8.0),
                 child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => TagDetail(
+                                    tagId: widget.taglist[index].id,
+                                  )));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: HexColor('#E0E0E0')),
